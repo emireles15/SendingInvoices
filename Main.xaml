@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="842.4,1304" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="842.4,1525.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -146,7 +146,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="592,1239.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Process that makes the following:&#xD;&#xA;1. User inputs the quantity of invoices to be created.&#xD;&#xA;2. The input value is evaluated.&#xD;&#xA;3. The while process is executed according to the input value by user.&#xD;&#xA;4. A macro is executed, so a new Invoice is created.&#xD;&#xA;5. The Invoices are sent as PDF by Outlook to the customer." DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="592,1460.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="iQtyInvoices" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="validInput" />
@@ -166,6 +166,7 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message - Start" sap:VirtualizedContainerService.HintSize="529.6,84.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Process just started&quot;]">
@@ -361,9 +362,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="While" sap:VirtualizedContainerService.HintSize="529.6,896" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[InvoiceCounter &lt;= iQtyInvoices]" DisplayName="While" sap:VirtualizedContainerService.HintSize="529.6,1009.6" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
       <ui:InterruptibleWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,758.4" sap2010:WorkflowViewState.IdRef="Sequence_34">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,872" sap2010:WorkflowViewState.IdRef="Sequence_34">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -426,6 +427,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ueab:ExcelProcessScopeX>
+          <ui:LogMessage DisplayName="Log Message - Macro Executed Successfully" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Macro was executed successfully&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
           <ui:ReadTextFile File="{x:Null}" Content="[sTemporalDetails]" DisplayName="Read Text File - Temporal.txt" FileName="temp\temporal.txt" sap:VirtualizedContainerService.HintSize="433.6,84.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -532,7 +541,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:DeleteFileX>
-          <umam:SendMailConnections ArgumentAttachmentPaths="{x:Null}" AttachmentList="{x:Null}" AttachmentPaths="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" Mailbox="{x:Null}" ReplyTo="{x:Null}" TextBody="{x:Null}" AttachmentInputMode="Existing" Attachments="[PDFInfoList]" AuthScopesInvalid="False" Body="[&quot;Estimado/a Cliente.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xD;&#xA;&quot;Esperamos que se encuentre bien. Adjunto a este correo encontrará la factura &quot; &amp; NumeroFactura &amp; &quot; correspondiente a los servicios/productos proporcionados en el período &quot; &amp; Fecha &amp; &quot;.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xD;&#xA;&quot;Por favor, revise los detalles de la factura y si tiene alguna pregunta o necesita más información, no dude en contactarnos. Nuestro equipo está a su disposición para cualquier consulta o aclaración.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xD;&#xA;&quot;Agradecemos su preferencia y colaboración.&lt;br&gt;Saludos cordiales.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xD;&#xA;&quot;Erick Mireles&lt;br&gt;&quot; &amp; _&#xD;&#xA;&quot;IT team&quot;]" ConnectionId="43573cb0-646e-4d18-a2f8-d0388b80dff8" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="433.6,84.8" sap2010:WorkflowViewState.IdRef="SendMailConnections_1" Importance="Normal" InputType="HTML" SaveAsDraft="False" Subject="[&quot;Electronica El Soconusco. Factura &quot; + NumeroFactura]" To="[EmailAddresses]" UseConnectionService="True" UseSharedMailbox="False">
+          <umam:SendMailConnections ArgumentAttachmentPaths="{x:Null}" AttachmentList="{x:Null}" AttachmentPaths="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" Mailbox="{x:Null}" ReplyTo="{x:Null}" TextBody="{x:Null}" AttachmentInputMode="Existing" Attachments="[PDFInfoList]" AuthScopesInvalid="False" Body="[&quot;Estimado/a Cliente.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xA;&quot;Esperamos que se encuentre bien. Adjunto a este correo encontrará la factura &quot; &amp; NumeroFactura &amp; &quot; correspondiente a los servicios/productos proporcionados en el período &quot; &amp; Fecha &amp; &quot;.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xA;&quot;Por favor, revise los detalles de la factura y si tiene alguna pregunta o necesita más información, no dude en contactarnos. Nuestro equipo está a su disposición para cualquier consulta o aclaración.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xA;&quot;Agradecemos su preferencia y colaboración.&lt;br&gt;Saludos cordiales.&lt;br&gt;&lt;br&gt;&quot; &amp; _&#xA;&quot;Erick Mireles&lt;br&gt;&quot; &amp; _&#xA;&quot;IT team&quot;]" ConnectionId="43573cb0-646e-4d18-a2f8-d0388b80dff8" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="433.6,84.8" sap2010:WorkflowViewState.IdRef="SendMailConnections_1" Importance="Normal" InputType="HTML" SaveAsDraft="False" Subject="[&quot;Electronica El Soconusco. Factura &quot; + NumeroFactura]" To="[EmailAddresses]" UseConnectionService="True" UseSharedMailbox="False">
             <umam:SendMailConnections.AttachmentsBackup>
               <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Existing">
                 <usau:BackupSlot.BackupValues>
@@ -561,6 +570,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </umam:SendMailConnections>
+          <ui:LogMessage DisplayName="Log Message - Email sent successfully" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Email with PDF was sent successfully to Customer&quot;]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:LogMessage>
           <ui:MultipleAssign DisplayName="Multiple Assign - Clean up the list" sap:VirtualizedContainerService.HintSize="433.6,76" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
@@ -599,9 +616,6 @@
           </ui:MultipleAssign>
         </Sequence>
       </ui:InterruptibleWhile.Body>
-      <ui:InterruptibleWhile.Condition>
-        <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="InvoiceCounter &lt;= iQtyInvoices" />
-      </ui:InterruptibleWhile.Condition>
     </ui:InterruptibleWhile>
   </Sequence>
 </Activity>
